@@ -67,7 +67,7 @@ const HomePage = () => {
     <div className="flex flex-col items-center gap-6 mt-8">
   
       {/* Card count date */}
-      <Card className="w-[1000px] text-center">
+      <Card className="w-full max-w-4xl text-center">
         <p className="text-4xl text-left ml-10 mt-4">สวัสดี, สุพิชาภักค์</p>
         <CardHeader>
           <p className="text-2xl">เหลือเวลาอ่านหนังสือสอบอีก</p>
@@ -91,11 +91,6 @@ const HomePage = () => {
             <p>วินาที</p>
           </div>
         </CardContent>
-        {/* <CardFooter className="justify-center">
-          <Button className="text-xl" onClick={() => setShowAlert(true)}>
-          คลิกเพื่อ พร้อมลุย!
-          </Button>
-        </CardFooter> */}
       </Card>
 
       {/* Card quiz  */}

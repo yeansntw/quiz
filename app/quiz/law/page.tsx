@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, RotateCcw } from "lucide-react";
 import Link from "next/link";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import quizData from "@/app/data/law";
@@ -37,6 +37,10 @@ const LawQuiz = () => {
       setCurrentQuestionIndex((prev) => prev - 1);
     }
   };
+ const refresh = () => {
+  window.location.reload();
+};
+
 
   const isLastQuestion = currentQuestionIndex === quizData.length - 1;
 const allAnswered = answers.every((a) => a !== null);
@@ -69,6 +73,10 @@ const handleSubmit = () => {
       <Alert className="w-[500px] flex flex-col items-center justify-center mb-4">
         <AlertTitle className="text-2xl">คุณได้คะแนน {finalScore} / {quizData.length} 🎉</AlertTitle>
         <AlertDescription className="text-xl mt-2">ตั้งใจอ่านหนังสือนะ สู้ ๆ 💪📚</AlertDescription>
+        <Button className="mt-4" onClick={refresh}>
+   <RotateCcw />
+    ทำอีกครั้ง
+  </Button>
       </Alert>
     )}
       {/* Question card */}
