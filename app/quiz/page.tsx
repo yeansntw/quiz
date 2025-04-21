@@ -59,6 +59,7 @@ const QuizPage = () => {
       </div>
 
       {/* Pagination (Question Number Buttons) */}
+      {/* Pagination (Question Number Buttons) */}
       {rows.map((row, rowIndex) => (
   <div key={rowIndex} className="flex space-x-2 items-center justify-center mt-4">
     {row.map((num) => (
