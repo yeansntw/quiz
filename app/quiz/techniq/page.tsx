@@ -5,12 +5,12 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, Clock, RotateCcw } from "lucide-react";
 import Link from "next/link";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import originalQuizData from "@/app/data/law";
+import originalQuizData from "@/app/data/techniq";
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 
 
-const LawQuiz = () => {
+const TechniqPage = () => {
   const [quizData, setQuizData] = useState<typeof originalQuizData>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<(number | null)[]>([]);
@@ -30,20 +30,24 @@ const LawQuiz = () => {
   };
 
   useEffect(() => {
-    const shuffledQuestions = shuffleArray(originalQuizData).map((q) => {
+    const shuffledQuestions = shuffleArray(originalQuizData).map((q, index) => {
       const shuffledChoices = shuffleArray(q.choices);
-      const correctAnswerIndex = shuffledChoices.findIndex(choice => choice === q.choices[q.correctAnswer]);
-
+      const correctAnswerIndex = shuffledChoices.findIndex(
+        (choice) => choice === q.choices[q.correctAnswer]
+      );
+  
       return {
         ...q,
+        id: index + 1, // Assign incremental ID starting from 1
         choices: shuffledChoices,
         correctAnswer: correctAnswerIndex,
       };
     });
-
+  
     setQuizData(shuffledQuestions);
     setAnswers(Array(shuffledQuestions.length).fill(null));
   }, []);
+  
 
 
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -249,4 +253,4 @@ const LawQuiz = () => {
   );
 };
 
-export default LawQuiz;
+export default TechniqPage;

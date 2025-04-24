@@ -23,12 +23,12 @@ const HomePage = () => {
     {
       icon: <Book />,
       title: "เทคนิคและวิธีการ",
-      href: "/quiz",
+      href: "/quiz/techniq",
     },
     {
       icon: <HeartHandshake />,
       title: "ความรู้เรื่องโรคต่างๆ",
-      href: "/quiz",
+      href: "/quiz/knowledge",
     }
   ]
   
