@@ -1,18 +1,18 @@
 'use client'
-
-import { useEffect, useState } from "react"
-import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader
-} from "@/components/ui/card"
-import { Book, HeartHandshake, Scale } from "lucide-react"
-import Link from "next/link"
+import QuizCategoryCard from "@/components/Quiz/QuizCategoryCard";
+import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card";
+import { Book, HeartHandshake, Scale } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const HomePage = () => {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  })
+  
+  const examDate = new Date("2025-07-20T00:00:00")
 
   const quizCategories = [
     {
@@ -29,20 +29,8 @@ const HomePage = () => {
       icon: <HeartHandshake />,
       title: "ความรู้เรื่องโรคต่างๆ",
       href: "/quiz/knowledge",
-    }
-  ]
-  
-
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  })
-
-
-  const examDate = new Date("2025-07-18T00:00:00")
-
+    },
+  ];
   useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date()
@@ -65,8 +53,6 @@ const HomePage = () => {
 
   return (
     <div className="flex flex-col items-center gap-6 mt-8">
-  
-      {/* Card count date */}
       <Card className="w-full max-w-4xl text-center">
         <p className="text-4xl text-left ml-10 mt-4">สวัสดี, สุพิชาภักค์</p>
         <CardHeader>
@@ -92,36 +78,17 @@ const HomePage = () => {
           </div>
         </CardContent>
       </Card>
-
-      {/* Card quiz  */}
-      <div className="flex flex-col">
-      <h1 className="text-3xl text-center my-4">หมวดหมู่ข้อสอบ</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-  {quizCategories.map((category, index) => (
-    <Card
-      key={index}
-      className="w-[300px] text-center border-2 hover:border-violet-500 transition duration-150"
-    >
-      <CardContent>
-        <div className="flex justify-center items-center my-4">
-          <div className="scale-200">{category.icon}</div>
-        </div>
-        <p className="text-xl">{category.title}</p>
-      </CardContent>
-      <CardFooter className="justify-center">
-        <Link href={category.href}>
-          <Button className="text-lg cursor-pointer hover:bg-violet-900 transition duration-150">
-            ทำข้อสอบ
-          </Button>
-        </Link>
-      </CardFooter>
-    </Card>
-  ))}
-</div>
-
+        {quizCategories.map((category, index) => (
+          <QuizCategoryCard
+            key={index}
+            icon={category.icon}
+            title={category.title}
+            href={category.href}
+          />
+        ))}
       </div>
     </div>
-  )
+  );
 }
-
 export default HomePage

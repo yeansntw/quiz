@@ -17,12 +17,8 @@ const LawQuiz = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [finalScore, setFinalScore] = useState(0)
   const [scorePercent, setScorePercent] = useState(0);
-
   const [timeLeft, setTimeLeft] = useState(90 * 60); // in seconds
   const [timeUsed, setTimeUsed] = useState(0);       // in seconds
-
-
-
 
   // Shuffle function
   const shuffleArray = <T,>(array: T[]): T[] => {
@@ -45,7 +41,6 @@ const LawQuiz = () => {
     setAnswers(Array(shuffledQuestions.length).fill(null));
   }, []);
 
-
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -60,10 +55,9 @@ const LawQuiz = () => {
         return prev - 1;
       });
     }, 1000);
-  
+
     return () => clearInterval(intervalRef.current!); // cleanup on unmount
   }, []);
-  
 
   const formatTime = (seconds: number) => {
     const h = Math.floor(seconds / 3600);
@@ -72,12 +66,9 @@ const LawQuiz = () => {
     return `${h > 0 ? h + ":" : ""}${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
   };
 
-
   const currentQuestion = quizData[currentQuestionIndex];
 
-
   if (quizData.length === 0) return null; // or loading spinner
-
 
   const handleAnswerChange = (choiceIndex: number) => {
     const updatedAnswers = [...answers];
@@ -96,10 +87,10 @@ const LawQuiz = () => {
       setCurrentQuestionIndex((prev) => prev - 1);
     }
   };
+
   const refresh = () => {
     window.location.reload();
   };
-
 
   const isLastQuestion = currentQuestionIndex === quizData.length - 1;
   const allAnswered = answers.every((a) => a !== null);
@@ -108,7 +99,7 @@ const LawQuiz = () => {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
     }
-
+    
     let score = 0;
     answers.forEach((answer, index) => {
       if (answer === quizData[index].correctAnswer) {
@@ -122,11 +113,6 @@ const LawQuiz = () => {
     setScorePercent(percent);   // save percentage to state (create this state)
     setShowAlert(true);         // show result or alert
   };
-
-
-
-
-
   return (
     <div className="flex flex-col items-center justify-center p-4">
 
@@ -209,9 +195,6 @@ const LawQuiz = () => {
               );
             })}
           </RadioGroup>
-
-
-
         </div>
 
         {/* Navigation */}

@@ -35,7 +35,7 @@ const TechniqPage = () => {
       const correctAnswerIndex = shuffledChoices.findIndex(
         (choice) => choice === q.choices[q.correctAnswer]
       );
-  
+
       return {
         ...q,
         id: index + 1, // Assign incremental ID starting from 1
@@ -43,11 +43,11 @@ const TechniqPage = () => {
         correctAnswer: correctAnswerIndex,
       };
     });
-  
+
     setQuizData(shuffledQuestions);
     setAnswers(Array(shuffledQuestions.length).fill(null));
   }, []);
-  
+
 
 
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -64,10 +64,10 @@ const TechniqPage = () => {
         return prev - 1;
       });
     }, 1000);
-  
+
     return () => clearInterval(intervalRef.current!); // cleanup on unmount
   }, []);
-  
+
 
   const formatTime = (seconds: number) => {
     const h = Math.floor(seconds / 3600);
@@ -165,7 +165,7 @@ const TechniqPage = () => {
       {/* Question card */}
       <div className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-2xl space-y-6">
         <h2 className="text-2xl font-bold text-gray-800 text-center">
-          กฏหมายและจรรยาบรรณ
+          เทคนิคและวิธีการ
         </h2>
         <p className="text-xl  text-gray-700 text-center">
           {currentQuestionIndex + 1}. {currentQuestion.question}
